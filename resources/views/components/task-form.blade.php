@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2 class="mb-4">Task Management</h2>
-    <form id="taskForm" action="{{ route('tasks') }}" method="POST">
+    <form id="taskForm" action="/tasks" method="POST">
         @csrf
 
         <div class="form-group">
@@ -161,7 +161,7 @@
         }
         formData.delete('task_id');
 
-        fetch('{{ route('tasks') }}', {
+        fetch("/tasks", {
             method: 'POST',
             body: formData,
             headers: {
