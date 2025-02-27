@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\src\Backoffice\Task\Domain\Models;
+namespace src\Backoffice\Employee\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Lightit\Shared\App\src\Backoffice\Employee\Domain\Models\Task;
+use src\Backoffice\Task\Domain\Models\Task;
 
 class Employee extends Model
 {

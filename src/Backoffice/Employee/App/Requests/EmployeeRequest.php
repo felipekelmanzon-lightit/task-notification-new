@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\Http\Requests;
+namespace src\Backoffice\Employee\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TaskRequest extends FormRequest
+class EmployeeRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -17,8 +17,7 @@ class TaskRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-            'employee_id' => ['required', 'exists:employees,id'],
+            'email' => ['required', 'email', 'unique:employees,email'],
         ];
     }
 }
