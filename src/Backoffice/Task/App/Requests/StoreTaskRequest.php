@@ -6,7 +6,7 @@ namespace src\Backoffice\Task\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpsertTaskRequest extends FormRequest
+class StoreTaskRequest extends FormRequest
 {
     public function rules(): array
     {

@@ -11,13 +11,9 @@ class UpdateTaskAction
     /**
      * @param array<string, mixed> $data
      */
-    public function execute(array $data, Task|null $task = null): Task
+    public function execute(array $data, Task $task): Task
     {
-        if ($task === null) {
-            throw new \InvalidArgumentException('Task can not be null');
-        }
         $task->update($data);
-
         return $task;
     }
 }
