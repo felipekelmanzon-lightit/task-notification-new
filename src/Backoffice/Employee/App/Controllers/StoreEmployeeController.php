@@ -15,6 +15,11 @@ class StoreEmployeeController extends Controller
     {
         $employee = $action->execute($request->validated());
 
-        return response()->json(['message' => 'Employee created successfully', 'data' => $employee]);
+        return responder()
+            ->success([
+                'message' => 'Employee created successfully',
+                'data' => $employee,
+            ])
+            ->respond(201);
     }
 }

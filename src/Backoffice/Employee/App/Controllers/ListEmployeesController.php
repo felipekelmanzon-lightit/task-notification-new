@@ -11,6 +11,11 @@ class ListEmployeesController
 {
     public function __invoke(ListEmployeesAction $action): JsonResponse
     {
-        return response()->json(['data' => $action->execute()]);
+        return responder()
+            ->success([
+                'message' => 'Employees listed successfully',
+                'data' => $action->execute(),
+            ])
+            ->respond();
     }
 }

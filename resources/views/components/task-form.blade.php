@@ -70,7 +70,7 @@
             })
                 .then(response => response.json())
                 .then(response => {
-                    response.data.forEach(employee => {
+                    response.data.data.forEach(employee => {
                         const option = document.createElement('option');
                         option.value = employee.id;
                         option.textContent = employee.name;
@@ -100,7 +100,7 @@
                 const taskSelect = document.getElementById('task_id');
                 taskSelect.innerHTML = '<option value="">Select Task</option>'; // Reset existing options
 
-                response.data.forEach(task => {
+                response.data.data.forEach(task => {
                     const option = document.createElement('option');
                     option.value = task.id;
                     option.textContent = `Task ${task.id}: ${task.title}`;
@@ -128,7 +128,7 @@
         })
             .then(response => response.json())
             .then(async response => {
-                const task = response.data;
+                const task = response.data.data;
                 document.querySelector('input[name="title"]').value = task.title;
                 document.querySelector('textarea[name="description"]').value = task.description;
                 document.querySelector('select[name="status"]').value = task.status;

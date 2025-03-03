@@ -6,7 +6,8 @@ use src\Backoffice\Employee\App\Controllers\ListEmployeesController;
 use src\Backoffice\Employee\App\Controllers\StoreEmployeeController;
 use src\Backoffice\Task\App\Controllers\GetTaskController;
 use src\Backoffice\Task\App\Controllers\ListTasksController;
-use src\Backoffice\Task\App\Controllers\UpsertTaskController;
+use src\Backoffice\Task\App\Controllers\StoreTaskController;
+use src\Backoffice\Task\App\Controllers\UpdateTaskController;
 
 Route::prefix('employees')
     ->group(static function () {
@@ -18,8 +19,8 @@ Route::prefix('tasks')
     ->group(static function () {
         Route::get('/{task}', GetTaskController::class);
         Route::get('/', ListTasksController::class);
-        Route::post('/', UpsertTaskController::class);
-        Route::put('/{task}', UpsertTaskController::class);
+        Route::post('/', StoreTaskController::class);
+        Route::put('/{task}', UpdateTaskController::class);
     });
 
 
