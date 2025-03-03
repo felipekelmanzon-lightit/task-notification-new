@@ -7,11 +7,11 @@ namespace Lightit\Backoffice\Users\Domain\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use src\Backoffice\Task\Domain\Models\Task;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Domain\Users\Models\User
