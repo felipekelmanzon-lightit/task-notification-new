@@ -7,9 +7,11 @@ namespace src\Backoffice\Task\Domain\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use src\Backoffice\Employee\Domain\Models\Employee;
+use Lightit\Backoffice\Users\Domain\Models\User;
 
 class Task extends Model
 {
+    protected $guarded = [];
     /**
      * @return BelongsTo<Employee, $this>
      */
@@ -17,4 +19,13 @@ class Task extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+    
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

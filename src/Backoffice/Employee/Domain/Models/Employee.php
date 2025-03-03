@@ -10,6 +10,7 @@ use src\Backoffice\Task\Domain\Models\Task;
 
 class Employee extends Model
 {
+    protected $guarded = ['id'];
     /**
      * @return HasMany<Task, $this>
      */

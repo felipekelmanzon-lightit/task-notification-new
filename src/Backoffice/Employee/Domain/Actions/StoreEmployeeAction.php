@@ -6,10 +6,10 @@ namespace src\Backoffice\Employee\Domain\Actions;
 
 use src\Backoffice\Employee\Domain\Models\Employee;
 
-class ListEmployeesAction
+class StoreEmployeeAction
 {
-    public function execute()
+    public function execute(array $data): Employee
     {
-        return Employee::all();
+        return Employee::create($data);
     }
 }

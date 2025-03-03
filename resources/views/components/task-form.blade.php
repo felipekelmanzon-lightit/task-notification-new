@@ -54,37 +54,37 @@
     let tasksLoaded = false;
 
     function loadEmployees(select) {
-    return new Promise((resolve, reject) => {
-        if (employeesLoaded) {
-            resolve();
-            return;
-        }
-
-        select.innerHTML = '<option value="">Select Employee</option>';
-
-        fetch('/employees', {
-            headers: {
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-            .then(response => response.json())
-            .then(response => {
-                response.data.forEach(employee => {
-                    const option = document.createElement('option');
-                    option.value = employee.id;
-                    option.textContent = employee.name;
-                    select.appendChild(option);
-                });
-                employeesLoaded = true;
+        return new Promise((resolve, reject) => {
+            if (employeesLoaded) {
                 resolve();
+                return;
+            }
+
+            select.innerHTML = '<option value="">Select Employee</option>';
+
+            fetch('/employees', {
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
             })
-            .catch(error => {
-                console.error('Error loading employees:', error);
-                reject(error);
-            });
-    });
-}
+                .then(response => response.json())
+                .then(response => {
+                    response.data.forEach(employee => {
+                        const option = document.createElement('option');
+                        option.value = employee.id;
+                        option.textContent = employee.name;
+                        select.appendChild(option);
+                    });
+                    employeesLoaded = true;
+                    resolve();
+                })
+                .catch(error => {
+                    console.error('Error loading employees:', error);
+                    reject(error);
+                });
+        });
+    }
 
     function loadTasks(select) {
         if (tasksLoaded) return;
@@ -153,46 +153,33 @@
     document.getElementById('taskForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const formData = new FormData(this);
-        const action = formData.get('action');
+        const action = document.getElementById('action').value;
+        const taskId = document.getElementById('task_id').value;
 
-        if (action === 'update') {
-            const taskId = formData.get('task_id');
-            formData.append('id', taskId);
+        let url = "/tasks";
+        let method = 'POST';
+
+        if (action === 'update' && taskId) {
+            url = `/tasks/${taskId}`;
+            method = 'PUT';
+            formData.append('_method', 'PUT'); // Laravel lo necesita en formularios tradicionales
         }
-        formData.delete('task_id');
 
-        fetch("/tasks", {
-            method: 'POST',
+        fetch(url, {
+            method: method,
             body: formData,
             headers: {
                 'Accept': 'application/json',
                 'X-Requested-With': 'XMLHttpRequest'
             }
         })
-            .then(response => response.json())
-            .then(data => {
-                // Switch to task tab
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                document.querySelectorAll('.component-container').forEach(c => c.classList.remove('active'));
-
-                document.querySelector('[data-component="task"]').classList.add('active');
-                document.getElementById('task-component').classList.add('active');
-
-                // Show success message in global container
-                const globalSuccessMessage = document.getElementById('global-success-message');
-                globalSuccessMessage.textContent = action === 'update' ? 'Task updated successfully' : 'Task created successfully';
-                globalSuccessMessage.style.display = 'block';
-
-                this.reset();
-                document.getElementById('taskSelectGroup').style.display = 'none';
-                document.getElementById('action').value = 'create';
-                const employeeSelect = document.querySelector('select[name="employee_id"]');
-                employeeSelect.selectedIndex = 0;
-                employeesLoaded = false;
-                tasksLoaded = false;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        .then(response => response.json())
+        .then(data => {
+            alert(action === 'update' ? 'Task updated successfully' : 'Task created successfully');
+            this.reset();
+            document.getElementById('taskSelectGroup').style.display = 'none';
+            document.getElementById('action').value = 'create';
+        })
+        .catch(error => console.error('Error:', error));
     });
 </script>

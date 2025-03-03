@@ -12,6 +12,8 @@ class ListTasksController extends Controller
 {
     public function __invoke(ListTasksAction $action): JsonResponse
     {
-        return $action->execute();
+        return responder()
+            ->success($action->execute())
+            ->respond();
     }
 }

@@ -10,8 +10,10 @@ use src\Backoffice\Task\Domain\Models\Task;
 
 class GetTaskController
 {
-    public function __invoke(GetTaskAction $action, Task $task): JsonResponse
+    public function __invoke(Task $task): JsonResponse
     {
-        return $action->execute($task);
+        return responder()
+            ->success($task)
+            ->respond();
     }
 }

@@ -6,18 +6,14 @@ namespace src\Backoffice\Task\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TaskRequest extends FormRequest
+class UpsertTaskRequest extends FormRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
+            'status' => ['required', 'string', 'in:pending,in_progress,completed'],
             'employee_id' => ['required', 'exists:employees,id'],
         ];
     }

@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use src\Backoffice\Task\Domain\Models\Task;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Domain\Users\Models\User
@@ -85,5 +87,13 @@ class User extends Authenticatable
                 return strtolower($value);
             },
         );
+    }
+
+    /**
+     * @return HasMany<Task, $this>
+     */
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'user_id');
     }
 }
