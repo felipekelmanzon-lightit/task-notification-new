@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Shared\App\src\Backoffice\Employee\Domain\Models;
+namespace src\Backoffice\Task\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Lightit\Shared\App\src\Backoffice\Task\Domain\Models\Employee;
+use src\Backoffice\Employee\Domain\Models\Employee;
 
 class Task extends Model
 {
+    protected $guarded = [];
+
     /**
      * @return BelongsTo<Employee, $this>
      */

@@ -7,9 +7,11 @@ namespace Lightit\Backoffice\Users\Domain\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use src\Backoffice\Task\Domain\Models\Task;
 
 /**
  * Domain\Users\Models\User
@@ -38,6 +40,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Task> $tasks
+ * @property-read int|null $tasks_count
  *
  * @mixin \Eloquent
  */
@@ -85,5 +90,13 @@ class User extends Authenticatable
                 return strtolower($value);
             },
         );
+    }
+
+    /**
+     * @return HasMany<Task, $this>
+     */
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'user_id');
     }
 }

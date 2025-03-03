@@ -35,3 +35,5 @@ Route::prefix('users')
         Route::post('/', StoreUserController::class);
         Route::delete('/{user}', DeleteUserController::class);
     });
+
+
