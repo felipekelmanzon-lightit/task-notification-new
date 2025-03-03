@@ -12,7 +12,6 @@ class ListEmployeesAction
     /**
      * @return Collection<int, Employee>
      */
-
     public function execute(): Collection
     {
         return Employee::all();

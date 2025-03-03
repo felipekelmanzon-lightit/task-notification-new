@@ -12,7 +12,6 @@ class ListTasksAction
     /**
      * @return Collection<int, Task>
      */
-    
     public function execute(): Collection
     {
         return Task::all();
