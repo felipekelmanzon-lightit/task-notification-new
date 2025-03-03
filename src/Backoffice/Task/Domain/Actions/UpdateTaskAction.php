@@ -6,7 +6,7 @@ namespace src\Backoffice\Task\Domain\Actions;
 
 use src\Backoffice\Task\Domain\Models\Task;
 
-class UpdateTaskAction 
+class UpdateTaskAction
 {
     /**
      * @param array<string, mixed> $data
@@ -17,6 +17,7 @@ class UpdateTaskAction
             throw new \InvalidArgumentException('Task can not be null');
         }
         $task->update($data);
+
         return $task;
     }
 }

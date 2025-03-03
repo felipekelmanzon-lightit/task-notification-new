@@ -23,6 +23,5 @@ class UpdateTaskController extends Controller
                 'data' => $task,
             ])
             ->respond();
-
     }
 }

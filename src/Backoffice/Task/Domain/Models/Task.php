@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use src\Backoffice\Employee\Domain\Models\Employee;
 
-
 class Task extends Model
 {
     protected $guarded = [];
@@ -20,5 +19,4 @@ class Task extends Model
     {
         return $this->belongsTo(Employee::class);
     }
-
 }

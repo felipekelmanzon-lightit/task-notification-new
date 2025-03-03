@@ -23,6 +23,5 @@ class StoreTaskController extends Controller
                 'data' => $task,
             ])
             ->respond();
-
     }
 }
