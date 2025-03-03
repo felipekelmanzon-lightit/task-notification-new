@@ -18,6 +18,7 @@ class UpsertTaskController extends Controller
         $task = $action->execute($validatedData, $task);
 
         return response()->json([
+            'success' => true,
             'message' => $request->isMethod('put') ? 'Task updated successfully' : 'Task created successfully',
             'data' => $task,
         ]);

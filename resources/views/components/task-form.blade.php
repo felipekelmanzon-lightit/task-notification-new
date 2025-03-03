@@ -152,34 +152,44 @@
 
     document.getElementById('taskForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const formData = new FormData(this);
-        const action = document.getElementById('action').value;
-        const taskId = document.getElementById('task_id').value;
+
+        let formData = new FormData(this);
+        let action = document.getElementById('action').value;
+        let taskId = document.getElementById('task_id').value.trim(); // Asegurar que no haya espacios en blanco
 
         let url = "/tasks";
-        let method = 'POST';
+        let method = "POST";
 
-        if (action === 'update' && taskId) {
-            url = `/tasks/${taskId}`;
-            method = 'PUT';
-            formData.append('_method', 'PUT'); // Laravel lo necesita en formularios tradicionales
+        if (action === "update" && taskId) {
+            url = `/tasks/${taskId}`;  // Aquí nos aseguramos de que `taskId` tiene un valor correcto
+            method = "POST";  // Laravel necesita esto para aceptar `PUT`
+            formData.append('_method', 'PUT'); 
         }
+
+        console.log(`Sending request to: ${url} with method: ${method}`);  // Debug
 
         fetch(url, {
             method: method,
             body: formData,
             headers: {
                 'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
             }
         })
         .then(response => response.json())
         .then(data => {
-            alert(action === 'update' ? 'Task updated successfully' : 'Task created successfully');
-            this.reset();
-            document.getElementById('taskSelectGroup').style.display = 'none';
-            document.getElementById('action').value = 'create';
+            console.log("Response received:", data); // Debug
+
+            if (data.success) {
+                alert(action === "update" ? "Task updated successfully" : "Task created successfully");
+                this.reset();
+                document.getElementById('taskSelectGroup').style.display = 'none';
+                document.getElementById('action').value = 'create';
+            } else {
+                console.error("Validation failed:", data.error.fields);
+            }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error("Error:", error));
     });
 </script>
