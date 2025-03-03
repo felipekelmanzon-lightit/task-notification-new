@@ -14,6 +14,7 @@ class UpdateTaskAction
     public function execute(array $data, Task $task): Task
     {
         $task->update($data);
+
         return $task;
     }
 }
