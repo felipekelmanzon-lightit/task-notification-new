@@ -15,7 +15,7 @@ class Task extends Model
     /**
      * @return BelongsTo<Employee, $this>
      */
-    public function employees(): BelongsTo
+    public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);
     }
