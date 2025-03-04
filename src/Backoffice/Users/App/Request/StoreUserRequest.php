@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Lightit\Backoffice\Users\Domain\DataTransferObjects\UserDto;
-use Lightit\Backoffice\Users\Domain\Models\User;
+use src\Backoffice\Users\Domain\Models\User;
 
 class StoreUserRequest extends FormRequest
 {

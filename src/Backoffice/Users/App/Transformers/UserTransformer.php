@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\Users\App\Transformers;
 
 use Flugg\Responder\Transformers\Transformer;
-use Lightit\Backoffice\Users\Domain\Models\User;
+use src\Backoffice\Users\Domain\Models\User;
 
 class UserTransformer extends Transformer
 {
