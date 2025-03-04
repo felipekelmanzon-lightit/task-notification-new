@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace src\Backoffice\Task\Domain\Actions;
 
-use src\Backoffice\Task\Domain\Models\Task;
 use src\Backoffice\Employee\App\Notifications\TaskAssignmentNotification;
+use src\Backoffice\Task\Domain\Models\Task;
 
 class UpdateTaskAction
 {
@@ -17,9 +17,7 @@ class UpdateTaskAction
         $task->update($data);
 
         $employee = $task->employee;
-        if ($employee !== null) {
-            $employee->notify(new TaskAssignmentNotification($task, true));
-        }
+        $employee->notify(new TaskAssignmentNotification($task, true));
 
         return $task;
     }

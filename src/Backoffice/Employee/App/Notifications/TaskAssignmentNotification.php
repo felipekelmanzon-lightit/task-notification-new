@@ -14,13 +14,8 @@ class TaskAssignmentNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private Task $task;
-    private bool $isReassigned;
-
-    public function __construct(Task $task, bool $isReassigned = false)
+    public function __construct(private Task $task, private bool $isReassigned = false)
     {
-        $this->task = $task;
-        $this->isReassigned = $isReassigned;
     }
 
     /**
@@ -33,11 +28,11 @@ class TaskAssignmentNotification extends Notification implements ShouldQueue
 
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->subject($this->isReassigned ? 'Task Reassigned' : 'New Task Assigned')
                     ->from('example@lightit.com', 'Lightit')
                     ->view('mail.assigned-task', [
-                        'task' => $this->task, 
+                        'task' => $this->task,
                         'isReassigned' => $this->isReassigned,
                     ]);
     }
@@ -48,7 +43,7 @@ class TaskAssignmentNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            
         ];
     }
 }
