@@ -41,7 +41,7 @@ class Employee extends Model
     /**
      * @return HasMany<Task, $this>
      */
-    public function task(): HasMany
+    public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }
