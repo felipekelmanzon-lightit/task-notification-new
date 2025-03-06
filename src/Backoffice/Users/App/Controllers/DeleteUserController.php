@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\Users\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Lightit\Backoffice\Users\Domain\Models\User;
+use src\Backoffice\Users\Domain\Models\User;
 
 class DeleteUserController
 {

@@ -6,8 +6,8 @@ namespace Lightit\Backoffice\Users\Domain\Actions;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Lightit\Backoffice\Users\Domain\Models\User;
 use Spatie\QueryBuilder\QueryBuilder;
+use src\Backoffice\Users\Domain\Models\User;
 
 class ListUserAction
 {

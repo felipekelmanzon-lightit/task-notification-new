@@ -11,7 +11,7 @@ use Illuminate\Testing\Fluent\AssertableJson;
 use Lightit\Backoffice\Users\App\Controllers\StoreUserController;
 use Lightit\Backoffice\Users\App\Notifications\UserRegistered;
 use Lightit\Backoffice\Users\App\Transformers\UserTransformer;
-use Lightit\Backoffice\Users\Domain\Models\User;
+use src\Backoffice\Users\Domain\Models\User;
 use Tests\RequestFactories\StoreUserRequestFactory;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\postJson;
